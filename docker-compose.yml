@@ -1,0 +1,11 @@
+version: '1'
+
+services:
+  assesment-db-test:
+    image: mysql:5.7
+    container_name: assesment_data_base_test
+    ports:
+      - '4000:3306'
+    environment:
+      - MYSQL_DATABASE=assesment_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes

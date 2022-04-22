@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: assessment_app
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    #    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    username: root
+    url: jdbc:mysql://${db.host}:${db.port}/assesment_test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8081
+
+db:
+  host: localhost
+  port: 4000
