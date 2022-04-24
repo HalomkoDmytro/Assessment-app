@@ -5,7 +5,7 @@ import com.drunkhorse.assesmentapp.exeption.ResourceNotFoundException;
 import com.drunkhorse.assesmentapp.model.Exam;
 import com.drunkhorse.assesmentapp.model.dto.ExamDto;
 import com.drunkhorse.assesmentapp.model.request.ExamTagRequest;
-import com.drunkhorse.assesmentapp.model.dto.Pagging;
+import com.drunkhorse.assesmentapp.model.dto.Paging;
 import com.drunkhorse.assesmentapp.service.ExamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +27,7 @@ public class ExamController {
     private final ExamService examService;
 
     @PostMapping("/all")
-    public List<Exam> findAll(@RequestBody Pagging pagging) {
+    public List<Exam> findAll(@RequestBody Paging pagging) {
         return examService.findAll(pagging);
     }
 

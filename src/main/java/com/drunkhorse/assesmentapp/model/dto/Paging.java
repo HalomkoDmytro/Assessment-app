@@ -1,4 +1,4 @@
 package com.drunkhorse.assesmentapp.model.dto;
 
-public record Pagging(int offset, int limit) {
+public record Paging(int offset, int limit) {
 }

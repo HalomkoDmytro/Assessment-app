@@ -48,6 +48,8 @@ public class Exam {
 
     private String description;
 
+    private String img;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Language language;

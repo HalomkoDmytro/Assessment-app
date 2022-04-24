@@ -1,7 +1,6 @@
 package com.drunkhorse.assesmentapp.repository;
 
 import com.drunkhorse.assesmentapp.model.Exam;
-import com.drunkhorse.assesmentapp.model.dto.Pagging;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

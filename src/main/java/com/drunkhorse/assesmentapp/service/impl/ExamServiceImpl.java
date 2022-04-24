@@ -4,7 +4,7 @@ import com.drunkhorse.assesmentapp.converter.ExamConverter;
 import com.drunkhorse.assesmentapp.exeption.ResourceNotFoundException;
 import com.drunkhorse.assesmentapp.model.Exam;
 import com.drunkhorse.assesmentapp.model.dto.ExamDto;
-import com.drunkhorse.assesmentapp.model.dto.Pagging;
+import com.drunkhorse.assesmentapp.model.dto.Paging;
 import com.drunkhorse.assesmentapp.repository.ExamRepository;
 import com.drunkhorse.assesmentapp.service.ExamService;
 import lombok.RequiredArgsConstructor;
@@ -23,15 +23,15 @@ public class ExamServiceImpl implements ExamService {
     private final ExamRepository examRepository;
 
     @Override
-    public List<Exam> findAll(Pagging pagging) {
-        Pageable pageable = PageRequest.of(pagging.limit(), pagging.offset());
+    public List<Exam> findAll(Paging paging) {
+        Pageable pageable = PageRequest.of(paging.offset(), paging.limit());
         Page<Exam> pageAll = examRepository.findAll(pageable);
         return pageAll.stream().toList();
     }
 
     @Override
-    public List<Exam> findAllByTags(List<String> tags, Pagging pagging) {
-        Pageable pageable = PageRequest.of(pagging.limit(), pagging.offset());
+    public List<Exam> findAllByTags(List<String> tags, Paging paging) {
+        Pageable pageable = PageRequest.of(paging.offset(), paging.limit());
         return examRepository.findAllByTags(tags, pageable);
     }
 

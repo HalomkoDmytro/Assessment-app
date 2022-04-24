@@ -1,7 +1,6 @@
 package com.drunkhorse.assesmentapp.model.request;
 
-import com.drunkhorse.assesmentapp.model.ExamTag;
-import com.drunkhorse.assesmentapp.model.dto.Pagging;
+import com.drunkhorse.assesmentapp.model.dto.Paging;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,5 +20,5 @@ public class ExamTagRequest {
 
     private List<String> tags;
 
-    private Pagging pagging;
+    private Paging pagging;
 }
