@@ -3,11 +3,14 @@ package com.drunkhorse.assesmentapp.service.impl;
 import com.drunkhorse.assesmentapp.converter.ExamConverter;
 import com.drunkhorse.assesmentapp.exeption.ResourceNotFoundException;
 import com.drunkhorse.assesmentapp.model.Exam;
-import com.drunkhorse.assesmentapp.model.ExamTag;
 import com.drunkhorse.assesmentapp.model.dto.ExamDto;
+import com.drunkhorse.assesmentapp.model.dto.Pagging;
 import com.drunkhorse.assesmentapp.repository.ExamRepository;
 import com.drunkhorse.assesmentapp.service.ExamService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,16 +23,16 @@ public class ExamServiceImpl implements ExamService {
     private final ExamRepository examRepository;
 
     @Override
-    public List<Exam> findAll() {
-        return examRepository.findAll();
+    public List<Exam> findAll(Pagging pagging) {
+        Pageable pageable = PageRequest.of(pagging.limit(), pagging.offset());
+        Page<Exam> pageAll = examRepository.findAll(pageable);
+        return pageAll.stream().toList();
     }
 
     @Override
-    public List<Exam> findAllByTags(List<ExamTag> tags) {
-        List<String> stringTags = tags.stream()
-                .map(ExamTag::getTag)
-                .toList();
-        return examRepository.findAllByTags(stringTags);
+    public List<Exam> findAllByTags(List<String> tags, Pagging pagging) {
+        Pageable pageable = PageRequest.of(pagging.limit(), pagging.offset());
+        return examRepository.findAllByTags(tags, pageable);
     }
 
     @Override

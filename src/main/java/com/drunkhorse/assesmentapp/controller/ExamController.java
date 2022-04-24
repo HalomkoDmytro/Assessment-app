@@ -4,7 +4,8 @@ import com.drunkhorse.assesmentapp.converter.ExamConverter;
 import com.drunkhorse.assesmentapp.exeption.ResourceNotFoundException;
 import com.drunkhorse.assesmentapp.model.Exam;
 import com.drunkhorse.assesmentapp.model.dto.ExamDto;
-import com.drunkhorse.assesmentapp.model.request.ExamRequest;
+import com.drunkhorse.assesmentapp.model.request.ExamTagRequest;
+import com.drunkhorse.assesmentapp.model.dto.Pagging;
 import com.drunkhorse.assesmentapp.service.ExamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,14 +26,14 @@ public class ExamController {
 
     private final ExamService examService;
 
-    @GetMapping
-    public List<Exam> findAll() {
-        return examService.findAll();
+    @PostMapping("/all")
+    public List<Exam> findAll(@RequestBody Pagging pagging) {
+        return examService.findAll(pagging);
     }
 
     @PostMapping("/tags")
-    public List<Exam> byTags(@RequestBody ExamRequest request) {
-        return examService.findAllByTags(request.getTags());
+    public List<Exam> byTags(@RequestBody ExamTagRequest request) {
+        return examService.findAllByTags(request.getTags(), request.getPagging());
     }
 
     @GetMapping("/{id}")
@@ -44,11 +45,6 @@ public class ExamController {
     @PostMapping
     public Exam crete(@RequestBody ExamDto dto) {
         return examService.createOrUpdate(ExamConverter.convert(dto));
-    }
-
-    @PostMapping("/test")
-    public ExamDto test(@RequestBody ExamDto dto) {
-        return dto;
     }
 
     @DeleteMapping("/delete/{id}")

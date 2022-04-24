@@ -1,6 +1,7 @@
 package com.drunkhorse.assesmentapp.model.request;
 
 import com.drunkhorse.assesmentapp.model.ExamTag;
+import com.drunkhorse.assesmentapp.model.dto.Pagging;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,9 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class ExamRequest {
+public class ExamTagRequest {
 
-    private Long id;
-    private List<ExamTag> tags;
+    private List<String> tags;
 
+    private Pagging pagging;
 }
