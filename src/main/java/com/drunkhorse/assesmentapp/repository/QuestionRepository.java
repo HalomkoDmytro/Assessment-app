@@ -12,7 +12,10 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     List<Question> findAllByExam_Id(Long examId);
 
-    @Query(value = "SELECT q.id FROM query q WHERE q.id = :examId ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT q.id FROM question q " +
+            " INNER JOIN exam e on e.id = q.exam_id " +
+            " WHERE e.id = :examId " +
+            " ORDER BY RAND() LIMIT 1", nativeQuery = true)
     Long getRandomQuestionIdForExam(Long examId);
 
 }

@@ -27,8 +27,8 @@ public class ExamController {
     private final ExamService examService;
 
     @PostMapping("/all")
-    public List<Exam> findAll(@RequestBody Paging pagging) {
-        return examService.findAll(pagging);
+    public List<Exam> findAll(@RequestBody Paging paging) {
+        return examService.findAll(paging);
     }
 
     @PostMapping("/tags")
