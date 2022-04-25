@@ -22,4 +22,6 @@ public interface QuestionService {
 
     List<Question> findAllByExamIdLimit(Long examId, int limit);
 
+    Question getRandomQuestion(Long examId);
+
 }

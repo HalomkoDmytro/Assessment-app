@@ -72,4 +72,11 @@ public class QuestionServiceImpl implements QuestionService {
                 .limit(limit)
                 .toList();
     }
+
+    @Override
+    public Question getRandomQuestion(Long examId) {
+        Long questionIdForExam = questionRepository.getRandomQuestionIdForExam(examId);
+        return findById(questionIdForExam)
+                .orElseThrow(ResourceNotFoundException::new);
+    }
 }

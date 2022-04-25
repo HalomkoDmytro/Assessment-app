@@ -50,8 +50,13 @@ public class QuestionController {
     }
 
     @PostMapping("/exam")
-    public List<Question> f(@RequestBody QuestionRequest request) {
+    public List<Question> byExamWithLimit(@RequestBody QuestionRequest request) {
         return questionService.findAllByExamIdLimit(request.getExamId(), request.getLimit());
+    }
+
+    @GetMapping("/random")
+    public Question getRandomQuestion(@RequestBody QuestionDto dto) {
+        return questionService.getRandomQuestion(dto.examId());
     }
 
 }
