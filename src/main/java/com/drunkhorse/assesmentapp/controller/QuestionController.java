@@ -54,9 +54,9 @@ public class QuestionController {
         return questionService.findAllByExamIdLimit(request.getExamId(), request.getLimit());
     }
 
-    @PostMapping("/random")
-    public Question getRandomQuestion(@RequestBody QuestionDto dto) {
-        return questionService.getRandomQuestion(dto.examId());
+    @GetMapping("/exams/{examId}/random")
+    public Question getRandomQuestion(@PathVariable Long examId) {
+        return questionService.getRandomQuestion(examId);
     }
 
 }
