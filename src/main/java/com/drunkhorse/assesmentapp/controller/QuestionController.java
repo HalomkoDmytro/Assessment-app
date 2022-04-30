@@ -30,8 +30,7 @@ public class QuestionController {
 
     @GetMapping("/{id}")
     public Question byId(@PathVariable Long id) {
-        return questionService.findById(id)
-                .orElseThrow(ResourceNotFoundException::new);
+        return questionService.getById(id, true);
     }
 
     @GetMapping("/exam/{examId}")

@@ -10,6 +10,8 @@ public interface QuestionService {
 
     Optional<Question> findById(Long id);
 
+    Question getById(Long id, boolean hideAnswer);
+
     List<Question> findAll();
 
     List<Question> findAllByExamId(Long examId);

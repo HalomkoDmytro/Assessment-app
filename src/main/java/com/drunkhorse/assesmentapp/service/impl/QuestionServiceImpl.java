@@ -31,6 +31,17 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public Question getById(Long id, boolean hideAnswer) {
+        Question question = findById(id)
+                .orElseThrow(ResourceNotFoundException::new);
+        if(hideAnswer) {
+            question.setAnswers(null);
+            question.setExplanationAnswer(null);
+        }
+        return question;
+    }
+
+    @Override
     public List<Question> findAll() {
         return questionRepository.findAll();
     }
