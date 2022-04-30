@@ -5,6 +5,8 @@ import com.drunkhorse.assesmentapp.exeption.ResourceNotFoundException;
 import com.drunkhorse.assesmentapp.model.Answer;
 import com.drunkhorse.assesmentapp.model.Question;
 import com.drunkhorse.assesmentapp.model.dto.AnswerDto;
+import com.drunkhorse.assesmentapp.model.request.CheckAnswerRequest;
+import com.drunkhorse.assesmentapp.model.request.CheckAnswerResponse;
 import com.drunkhorse.assesmentapp.repository.AnswerRepository;
 import com.drunkhorse.assesmentapp.service.AnswerService;
 import com.drunkhorse.assesmentapp.service.QuestionService;
@@ -49,4 +51,22 @@ public class AnswerServiceImpl implements AnswerService {
         answerRepository.deleteById(id);
     }
 
+    @Override
+    public CheckAnswerResponse checkAnswer(CheckAnswerRequest request) {
+
+        Question question = questionService.findById(request.questionId())
+                .orElseThrow(ResourceNotFoundException::new);
+
+        List<Answer> answers = question.getAnswers();
+
+        List<Long> correctAnswers = answers.stream()
+                .filter(Answer::isCorrect)
+                .map(Answer::getId)
+                .toList();
+
+        boolean isCorrect = correctAnswers.containsAll(request.answerList())
+                && request.answerList().containsAll(correctAnswers);
+
+        return new CheckAnswerResponse(request.questionId(), isCorrect, correctAnswers, question.getExplanationAnswer());
+    }
 }

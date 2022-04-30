@@ -2,6 +2,8 @@ package com.drunkhorse.assesmentapp.service;
 
 import com.drunkhorse.assesmentapp.model.Answer;
 import com.drunkhorse.assesmentapp.model.dto.AnswerDto;
+import com.drunkhorse.assesmentapp.model.request.CheckAnswerRequest;
+import com.drunkhorse.assesmentapp.model.request.CheckAnswerResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,5 +19,7 @@ public interface AnswerService {
     Answer createOrUpdate(Answer answer);
 
     void deleteById(Long id);
+
+    CheckAnswerResponse checkAnswer(CheckAnswerRequest request);
 
 }
