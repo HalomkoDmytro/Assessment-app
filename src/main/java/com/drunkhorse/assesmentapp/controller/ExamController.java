@@ -27,8 +27,11 @@ public class ExamController {
     private final ExamService examService;
 
     @PostMapping("/all")
-    public List<Exam> findAll(@RequestBody Paging paging) {
-        return examService.findAll(paging);
+    public List<ExamDto> findAll(@RequestBody Paging paging) {
+        return examService.findAll(paging)
+                .stream()
+                .map(ExamConverter::toDto)
+                .toList();
     }
 
     @PostMapping("/tags")

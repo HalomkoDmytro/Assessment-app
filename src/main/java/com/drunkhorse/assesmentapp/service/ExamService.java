@@ -11,7 +11,9 @@ public interface ExamService {
 
     List<Exam> findAll(Paging pagging);
 
-    List<Exam> findAllByTags(List<String> tags, Paging pagging);
+    List<Exam> findAllLight(Paging paging);
+
+    List<Exam> findAllByTags(List<String> tags, Paging paging);
 
     Optional<Exam> findById(Long id);
 

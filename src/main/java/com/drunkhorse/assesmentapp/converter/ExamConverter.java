@@ -8,6 +8,9 @@ import java.util.List;
 
 public final class ExamConverter {
 
+    private ExamConverter() {
+    }
+
     public static Exam convert(ExamDto dto) {
 
         List<ExamTag> examTags = dto.tags()
@@ -24,5 +27,21 @@ public final class ExamConverter {
                 .title(dto.title())
                 .year(dto.year())
                 .build();
+    }
+
+    public static ExamDto toDto(Exam exam) {
+
+        List<String> tags = exam.getTags()
+                .stream()
+                .map(ExamTag::getTag)
+                .toList();
+
+        return new ExamDto(exam.getId(),
+                exam.getTitle(),
+                exam.getYear(),
+                exam.getDescription(),
+                exam.getLanguage(),
+                exam.isTest(),
+                tags);
     }
 }

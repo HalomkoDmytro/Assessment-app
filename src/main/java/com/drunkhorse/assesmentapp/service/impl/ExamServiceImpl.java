@@ -30,6 +30,11 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
+    public List<Exam> findAllLight(Paging paging) {
+        return null;
+    }
+
+    @Override
     public List<Exam> findAllByTags(List<String> tags, Paging paging) {
         Pageable pageable = PageRequest.of(paging.offset(), paging.limit());
         return examRepository.findAllByTags(tags, pageable);
