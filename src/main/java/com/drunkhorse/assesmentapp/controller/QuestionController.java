@@ -58,4 +58,9 @@ public class QuestionController {
         return questionService.getRandomQuestion(examId);
     }
 
+    @GetMapping("/next/{questionId}")
+    public Question getNextQuestion(@PathVariable Long questionId) {
+        return questionService.getNextQuestion(questionId);
+    }
+
 }

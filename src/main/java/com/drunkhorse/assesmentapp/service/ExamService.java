@@ -22,4 +22,6 @@ public interface ExamService {
     Exam createOrUpdate(Exam exam);
 
     void deleteById(Long id);
+
+    Exam findByQuestionId(Long questionId);
 }

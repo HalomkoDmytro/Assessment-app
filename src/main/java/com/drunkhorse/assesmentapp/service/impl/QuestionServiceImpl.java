@@ -34,7 +34,7 @@ public class QuestionServiceImpl implements QuestionService {
     public Question getById(Long id, boolean hideAnswer) {
         Question question = findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
-        if(hideAnswer) {
+        if (hideAnswer) {
             question.setAnswers(null);
             question.setExplanationAnswer(null);
         }
@@ -89,5 +89,13 @@ public class QuestionServiceImpl implements QuestionService {
         Long questionIdForExam = questionRepository.getRandomQuestionIdForExam(examId);
         return findById(questionIdForExam)
                 .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public Question getNextQuestion(Long questionId) {
+        Exam exam = examService.findByQuestionId(questionId);
+        return questionRepository.getNextQuestion(questionId, exam.getId())
+                .orElse(questionRepository.findFirst(exam.getId())
+                        .orElseThrow(ResourceNotFoundException::new));
     }
 }

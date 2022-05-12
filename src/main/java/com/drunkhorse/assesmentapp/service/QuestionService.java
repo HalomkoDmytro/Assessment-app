@@ -26,4 +26,6 @@ public interface QuestionService {
 
     Question getRandomQuestion(Long examId);
 
+    Question getNextQuestion(Long questionId);
+
 }

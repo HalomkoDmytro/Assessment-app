@@ -49,7 +49,7 @@ public class ExamServiceImpl implements ExamService {
 
     @Override
     public Exam createOrUpdate(Exam exam) {
-        if(exam.getId() == null) {
+        if (exam.getId() == null) {
             return examRepository.save(exam);
         }
 
@@ -65,5 +65,11 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public void deleteById(Long id) {
         examRepository.deleteById(id);
+    }
+
+    @Override
+    public Exam findByQuestionId(Long questionId) {
+        return examRepository.findWithQuestion(questionId)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 }
