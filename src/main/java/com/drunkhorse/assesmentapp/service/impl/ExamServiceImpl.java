@@ -23,21 +23,18 @@ public class ExamServiceImpl implements ExamService {
     private final ExamRepository examRepository;
 
     @Override
-    public List<Exam> findAll(Paging paging) {
-        Pageable pageable = PageRequest.of(paging.offset(), paging.limit());
-        Page<Exam> pageAll = examRepository.findAll(pageable);
-        return pageAll.stream().toList();
+    public List<Exam> findAll() {
+        return examRepository.findAll();
     }
 
     @Override
-    public List<Exam> findAllLight(Paging paging) {
+    public List<Exam> findAllLight() {
         return null;
     }
 
     @Override
-    public List<Exam> findAllByTags(List<String> tags, Paging paging) {
-        Pageable pageable = PageRequest.of(paging.offset(), paging.limit());
-        return examRepository.findAllByTags(tags, pageable);
+    public List<Exam> findAllByTags(List<String> tags) {
+        return examRepository.findAllByTags(tags);
     }
 
     @Override

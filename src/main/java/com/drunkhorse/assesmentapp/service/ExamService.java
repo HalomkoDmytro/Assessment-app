@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface ExamService {
 
-    List<Exam> findAll(Paging pagging);
+    List<Exam> findAll();
 
-    List<Exam> findAllLight(Paging paging);
+    List<Exam> findAllLight();
 
-    List<Exam> findAllByTags(List<String> tags, Paging paging);
+    List<Exam> findAllByTags(List<String> tags);
 
     Optional<Exam> findById(Long id);
 

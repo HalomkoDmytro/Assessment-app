@@ -19,6 +19,4 @@ import java.util.List;
 public class ExamTagRequest {
 
     private List<String> tags;
-
-    private Paging pagging;
 }
